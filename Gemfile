@@ -16,6 +16,8 @@ gem 'jquery-ui-rails'
 gem 'fullcalendar-rails'
 gem 'momentjs-rails'
 
+gem 'kaminari', '~> 1.2'
+
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"
 
@@ -70,3 +72,5 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+gem "kaminari", "~> 1.2"

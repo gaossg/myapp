@@ -93,6 +93,8 @@
       </tr>
     <% end %>
   </table>
+  <%= paginate @productInfos %>
+
   <form id="submit-form">
     <input type="hidden" id="selected-products" name="selected_products" value="">
     <button type="submit">订购</button>

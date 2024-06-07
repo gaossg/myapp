@@ -1,12 +1,18 @@
 class OrderDetailController < ApplicationController
 
+  # include Kaminari
+
   # 跳过CSRF令牌验证，保护用户免受跨站请求伪造攻击的关键策略
   skip_before_action :verify_authenticity_token
 
   # 画面显示
   def orderDetailPage
     @details = OrderDetail.all
-    @productInfos = TblProductinfo.all
+
+    # 显示 >= 今天日期的数据 
+    # @productInfos = TblProductinfo.all
+    query = TblProductinfo.where('travel_time >= ?', Date.today)
+    @productInfos = query.page(params[:page]).per(4)
   end
 
   # 根据路由定义插入方法
