@@ -1,0 +1,25 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  product_id: MyString
+  route: MyString
+  formulate: MyString
+  productname: MyString
+  travel_time: 2024-06-04
+  departure_city: MyString
+  tourism_cycle: MyString
+  age_min: 1
+  age_max: 1
+  price: 1.5
+
+two:
+  product_id: MyString
+  route: MyString
+  formulate: MyString
+  productname: MyString
+  travel_time: 2024-06-04
+  departure_city: MyString
+  tourism_cycle: MyString
+  age_min: 1
+  age_max: 1
+  price: 1.5

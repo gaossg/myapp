@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Your View</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+  <%= javascript_include_tag 'https://code.jquery.com/jquery-3.6.0.min.js', 'https://code.jquery.com/ui/1.12.1/jquery-ui.min.js' %>
+
+</head>
+
+<body>
+  <h1>订单详情</h1>
+
+  <h2 style="color: red;">历史订单</h2>
+  <table>
+    <tr>
+      <th>订单编号</th>
+      <th>用户名</th>
+      <th>产品编号</th>
+      <th>产品名称</th>
+      <th>旅游路线</th>
+      <th>个人定制/团体</th>
+      <th>出游时间</th>
+      <th>出发城市</th>
+      <th>旅游周期</th>
+      <th>优惠后价格</th>
+      <th>订单状态</th>
+      <th>下单时间</th>
+    </tr>
+
+    <% @details.each do |detail| %>
+      <tr>
+        <td><%= detail.order_id %></td>
+        <td><%= detail.user_name %></td>
+        <td><%= detail.product_id %></td>
+        <td><%= detail.product_name %></td>
+        <td><%= detail.route %></td>
+        <td><%= detail.formulate %></td>
+        <td><%= detail.travel_time %></td>
+        <td><%= detail.departure_city %></td>
+        <td><%= detail.tourism_cycle %></td>
+        <td><%= detail.order_money %></td>
+        <td>
+          <% if detail.order_status == 1 %>
+            已支付
+          <% elsif detail.order_status == 2 %>
+            未支付
+          <% elsif detail.order_status == 3 %>
+            已取消
+          <% elsif detail.order_status == 4 %>
+            已完成
+          <% end %>
+        </td>
+
+        <td><%= detail.order_date %></td>
+      </tr>
+    <% end %>
+  </table>
+
+  <h2 style="color: red;">新订单选择</h2>
+  <a href="/discount">折扣信息详情</a>
+  <table>
+    <tr>
+      <th>产品编号</th>
+      <th>路线</th>
+      <th>个人定制/团体</th>
+      <th>产品名称</th>
+      <th>出游时间</th>
+      <th>出发城市</th>
+      <th>旅游周期</th>
+      <th>最小年龄</th>
+      <th>最大年龄</th>
+      <th>旅游价格</th>
+      <th>选择</th>
+    </tr>
+
+    <% @productInfos.each do |product| %>
+      <tr data-id="<%= product.id %>">
+        <td><%= product.product_id %></td>
+        <td><%= product.route %></td>
+        <td><%= product.formulate %></td>
+        <td><%= product.productname %></td>
+        <td><%= product.travel_time %></td>
+        <td><%= product.departure_city %></td>
+        <td><%= product.tourism_cycle %></td>
+        <td><%= product.age_min %></td>
+        <td><%= product.age_max %></td>
+        <td><%= product.price %></td>
+        <td>
+         <input type="checkbox" class="product-checkbox" data-id="<%= product.id %>">
+        </td>
+      </tr>
+    <% end %>
+  </table>
+  <form id="submit-form">
+    <input type="hidden" id="selected-products" name="selected_products" value="">
+    <button type="submit">订购</button>
+  </form>
+  
+  <script>
+    // 订购按钮的submit事件
+    // checkbox元素有一个类名为"product-checkbox"
+    $("#submit-form").on("submit", function(event) {
+          event.preventDefault();
+
+          // selectedProducts：存储product的id
+          var selectedProducts = [];
+          $(".product-checkbox:checked").each(function() {
+            selectedProducts.push($(this).data("id"));
+          });
+          
+          // alert(selectedProducts) // 1,2
+          
+          if (selectedProducts.length === 0) {
+            alert('非常抱歉，您没有选择商品，不能订购！');
+            return;
+          }
+          
+          // 向后端controller发送数据请求
+          $.ajax({
+            url: "/order_detail/insert_details",
+            type: 'POST',
+            data: { selected_products: selectedProducts },
+            success: function(response) {
+              if (response.status === 'success') {
+                alert(response.message);
+                eval(response.callback);
+              } else {
+                alert(response.message);
+              }
+            },
+            error: function() {
+              alert('请求失败');
+              return false;
+            }
+          });
+      });
+  </script>
+  
+  <script>
+    // 订购成功，页面自动刷新
+    function refreshPage() {
+      location.reload();
+    }
+  </script>
+</body>
+</html>
+
+
+
+
+

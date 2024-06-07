@@ -1,0 +1,25 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  productId: MyString
+  orderId: MyString
+  userId: MyString
+  userName: MyString
+  productName: MyString
+  orderMoney: 1.5
+  orderStatus: 1
+  orderDate: 2024-05-30
+  startDate: 2024-05-30
+  endDate: 2024-05-30
+
+two:
+  productId: MyString
+  orderId: MyString
+  userId: MyString
+  userName: MyString
+  productName: MyString
+  orderMoney: 1.5
+  orderStatus: 1
+  orderDate: 2024-05-30
+  startDate: 2024-05-30
+  endDate: 2024-05-30

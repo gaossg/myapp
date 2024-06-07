@@ -1,0 +1,29 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  order_id: MyString
+  user_name: MyString
+  product_id: MyString
+  product_name: MyString
+  route: MyString
+  formulate: MyString
+  travel_time: 2024-06-03
+  departure_city: MyString
+  tourism_cycle: MyString
+  order_money: 1.5
+  order_status: 1
+  order_date: 2024-06-03
+
+two:
+  order_id: MyString
+  user_name: MyString
+  product_id: MyString
+  product_name: MyString
+  route: MyString
+  formulate: MyString
+  travel_time: 2024-06-03
+  departure_city: MyString
+  tourism_cycle: MyString
+  order_money: 1.5
+  order_status: 1
+  order_date: 2024-06-03
