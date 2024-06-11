@@ -12,7 +12,7 @@ class OrderDetailController < ApplicationController
     # 显示 >= 今天日期的数据 
     # @productInfos = TblProductinfo.all
     query = TblProductinfo.where('travel_time >= ?', Date.today)
-    @productInfos = query.page(params[:page]).per(4)
+    @productInfos = query.page(params[:page]).per(10)
   end
 
   # 根据路由定义插入方法
